@@ -7,7 +7,13 @@ use App\Models\Support;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller
-{
+{ 
+    /**
+     * Página inicial
+     *
+     * @param Support $support
+     * @return void
+     */
     public function index(Support $support)
     {
         $supports = $support->all();
@@ -15,13 +21,30 @@ class SupportController extends Controller
         return view('admin.supports.index', compact('supports'));
     }
 
+    /**
+     * Exibe o formulário nova dúvida
+     *
+     * @return void
+     */
     public function create()
     {
         return view('admin.supports.create');
     }
 
-    public function store(Request $request)
+    /**
+     * Cadastra os dados do formulário nova dúvida
+     *
+     * @param Request $request
+     * @param Support $support
+     * @return void
+     */
+    public function store(Request $request, Support $support)
     {
-        dd('Caiu aqui');
+        $data = $request->all();
+        $data['status'] = 'a';
+
+        $support = $support->create($data);
+
+        return redirect()->route('supports.index');
     }
 }
