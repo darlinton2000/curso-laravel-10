@@ -1,6 +1,6 @@
 <h1>Dúvida {{ $support->id }}</h1>
 
-<form action="{{ route('supports.update', $support->id) }}" method="post">
+<form action="{{ route('supports.update', $support->id) }}" method="POST">
     @csrf
     @method('PUT')
     <input type="text" placeholder="Assunto" name="subject" value="{{ $support->subject }}"> 
