@@ -65,4 +65,41 @@ class SupportController extends Controller
 
         return redirect()->route('supports.index');
     }
+
+    /**
+     * Exibe o formulário editar dúvida
+     *
+     * @param Support $support
+     * @param string|integer $id
+     * @return void
+     */
+    public function edit(Support $support, string|int $id)
+    {
+        if (!$support = $support->where('id', $id)->first()) {
+            return back();
+        }
+
+        return view('admin.supports.edit', compact('support'));
+    }
+
+    /**
+     * Edita os dados no banco de dados
+     *
+     * @param Request $request
+     * @param Support $support
+     * @param string|integer $id
+     * @return void
+     */
+    public function update (Request $request, Support $support, string|int $id)
+    {
+        if (!$support = $support->find($id)) {
+            return back();
+        }
+
+        $support->update($request->only([
+            'subject', 'body'
+        ]));
+
+        return redirect()->route('supports.index');
+    }
 }
