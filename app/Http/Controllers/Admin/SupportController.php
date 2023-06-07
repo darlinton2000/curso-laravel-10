@@ -102,4 +102,21 @@ class SupportController extends Controller
 
         return redirect()->route('supports.index');
     }
+
+    /**
+     * Delete o registro no banco de dados
+     *
+     * @param string|integer $id
+     * @return void
+     */
+    public function destroy(string|int $id)
+    {
+        if (!$support = Support::find($id)) {
+            return back();
+        }
+
+        $support->delete();
+
+        return redirect()->route('supports.index');
+    }
 }
