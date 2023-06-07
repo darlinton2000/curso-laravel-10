@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateSupport;
 use App\Models\Support;
 use Illuminate\Http\Request;
 
@@ -56,7 +57,7 @@ class SupportController extends Controller
      * @param Support $support
      * @return void
      */
-    public function store(Request $request, Support $support)
+    public function store(StoreUpdateSupport $request, Support $support)
     {
         $data = $request->all();
         $data['status'] = 'a';
