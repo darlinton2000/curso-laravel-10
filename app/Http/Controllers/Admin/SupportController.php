@@ -53,13 +53,13 @@ class SupportController extends Controller
     /**
      * Cadastra os dados do formulário nova dúvida
      *
-     * @param Request $request
+     * @param StoreUpdateSupport $request
      * @param Support $support
      * @return void
      */
     public function store(StoreUpdateSupport $request, Support $support)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $data['status'] = 'a';
 
         $support = $support->create($data);
@@ -84,22 +84,20 @@ class SupportController extends Controller
     }
 
     /**
-     * Edita os dados no banco de dados
+     * Edita os dados no banco de dadosUndocumented function
      *
-     * @param Request $request
+     * @param StoreUpdateSupport $request
      * @param Support $support
      * @param string|integer $id
      * @return void
      */
-    public function update (Request $request, Support $support, string|int $id)
+    public function update (StoreUpdateSupport $request, Support $support, string|int $id)
     {
         if (!$support = $support->find($id)) {
             return back();
         }
 
-        $support->update($request->only([
-            'subject', 'body'
-        ]));
+        $support->update($request->validated());
 
         return redirect()->route('supports.index');
     }
