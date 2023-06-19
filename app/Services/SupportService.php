@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\DTO\CreateSupportDTO;
+use App\DTO\UpdateSupportDTO;
 use stdClass;
 
 class SupportService
@@ -46,46 +48,23 @@ class SupportService
     /**
      * Undocumented function
      *
-     * @param string $subject
-     * @param string $status
-     * @param string $body
+     * @param CreateSupportDTO $dto
      * @return stdClass
      */
-    public function new(
-        string $subject,
-        string $status,
-        string $body,
-    ): stdClass
+    public function new(CreateSupportDTO $dto): stdClass
     {
-        return $this->repository->new(
-            $subject,
-            $status,
-            $body,  
-        );
+        return $this->repository->new($dto);
     }
 
     /**
      * Undocumented function
      *
-     * @param string $id
-     * @param string $subject
-     * @param string $status
-     * @param string $body
+     * @param UpdateSupportDTO $dto
      * @return stdClass|null
      */
-    public function update(
-        string $id,
-        string $subject,
-        string $status,
-        string $body,
-    ): stdClass|null
+    public function update(UpdateSupportDTO $dto): stdClass|null
     {
-        return $this->repository->update(
-            $id,
-            $subject,
-            $status,
-            $body,  
-        );
+        return $this->repository->update($dto);
     }
 
     /**
