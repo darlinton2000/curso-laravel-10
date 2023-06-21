@@ -18,6 +18,26 @@ class SupportService
         protected SupportRepositoryInterface $repository
     ) {}
 
+   /**
+    * Undocumented function
+    *
+    * @param integer $page
+    * @param integer $totalPerPage
+    * @param string|null $filter
+    * @return void
+    */
+    public function paginate(
+        int $page = 1,
+        int $totalPerPage = 15,
+        string $filter = null
+    ) {
+        return $this->repository->paginate(
+            page: $page,
+            totalPerPage: $totalPerPage,
+            filter: $filter
+        );
+    }
+
     /**
      * Undocumented function
      *
