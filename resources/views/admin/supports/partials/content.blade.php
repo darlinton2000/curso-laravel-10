@@ -31,7 +31,7 @@
                                 {{ $support->subject }}
                             </td>
                             <td class="px-12 py-2 text-sm font-medium whitespace-nowrap">
-                                {{ getStatusSupport($support->status )}}
+                                <x-status-support :status="$support->status"></x-status-support>
                             </td>
                             <td class="px-4 py-2 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
                                 {{ $support->body }}
@@ -39,7 +39,7 @@
                             <td class="px-4 py-2 text-sm whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0 bg-green-500"></div>
-                                </div>
+                                </div>  
                             </td>
 
                             <td class="px-4 py-2 text-sm whitespace-nowrap flex">
