@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class AuthRequest extends FormRequest
+class StoreReplySupportRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +23,14 @@ class AuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => [
+            'content' => [
                 'required',
-                'email',
-                'max:255',
+                'min:3',
+                'max:10000',
             ],
-            'password' => [
+            'support_id' => [
                 'required',
-                'max:255',
-            ],
-            'device_name' => [
-                'required',
-                'max:255',
+                Rule::exists('supports', 'id'),
             ],
         ];
     }
